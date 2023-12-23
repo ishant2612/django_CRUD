@@ -1,0 +1,39 @@
+<!-- motorcycles/motorcycle_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Motorcycle Detail</title>
+  </head>
+  <body>
+    <h1>Motorcycle Detail</h1>
+    <p>Brand: {{ motorcycle.brand }}</p>
+    <p>Model: {{ motorcycle.model }}</p>
+    <p>Year: {{ motorcycle.year }}</p>
+    <p>Max Speed: {{ motorcycle.max_speed }}</p>
+
+    <!-- Display the form for updating -->
+    <form
+      method="post"
+      action="{% url 'motorcycle:update_motorcycle' motorcycle.id %}"
+    >
+      {% csrf_token %} {{ form.id }} {{ form.as_p }}
+      <button type="submit">Update Motorcycle</button>
+    </form>
+
+    <!-- Form for deleting the motorcycle -->
+    <form
+      method="post"
+      action="{% url 'motorcycle:delete_motorcycle' motorcycle.id %}"
+      onsubmit="return confirm('Are you sure you want to delete this motorcycle?');"
+    >
+      {% csrf_token %}
+      <button type="submit">Delete Motorcycle</button>
+    </form>
+
+    <!-- Back to the list view -->
+    <a href="{% url 'motorcycle:motorcycle_list' %}">Back to Motorcycle List</a>
+  </body>
+</html>

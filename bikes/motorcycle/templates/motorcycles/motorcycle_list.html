@@ -1,0 +1,23 @@
+<!-- motorcycles/motorcycle_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Motorcycle List</title>
+  </head>
+  <body>
+    <h1>Motorcycle List</h1>
+    <ul>
+      {% for motorcycle in motorcycles %}
+      <li>
+        <a href="{% url 'motorcycle:motorcycle_detail' motorcycle.id %}">
+          {{ motorcycle.brand }} {{ motorcycle.model }}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    <a href="{% url 'motorcycle:create_motorcycle' %}">Create New Motorcycle</a>
+  </body>
+</html>
